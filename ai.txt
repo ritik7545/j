@@ -1,0 +1,121 @@
+Hinoai tower
+def moveTower(n, fromPole , toPole, withPole):
+    if n:
+        moveTower(n-1,fromPole,withPole,toPole)
+        print(f" move tower from: {fromPole} to {toPole}")
+        moveTower(n-1,withPole,toPole,fromPole)
+moveTower(3,"A","B","C")
+----------------------------------------------------------------------------------
+deapth first search
+#dfs
+graphs1 ={
+    'A':set(['B','C']),
+    'B':set(['A','D','E']),
+    'C':set(['A','F']),
+    'D':set(['B']),
+    'E':set(['B']),
+    'F':set(['C']),
+    }
+def dfs(graph, node,visited):
+    if node not in visited:
+        visited.append(node)
+        for n in graph[node]:
+            dfs(graph, n , visited)
+    return (visited)
+
+visited=dfs(graphs1,"A",[])
+print(visited)
+--------------------------------------------------------------------------------
+card shuffle 
+import random
+
+suits=["Hearts","Diamonds","clubs","spades"]
+
+cardfaces =[str(i) for i in range(2,11)]+ ["J","Q","A","K"]
+
+deck=[f"{face} of {suit}" for suit in suits for face in cardfaces]
+
+random.shuffle(deck)
+print("\n".join(deck))
+--------------------------------------------------------------------------------
+bearth first search 
+#bfs
+
+graphs1 ={
+    'A':set(['B','C']),
+    'B':set(['A','D','E']),
+    'C':set(['A','F']),
+    'D':set(['B']),
+    'E':set(['B']),
+    'F':set(['C']),
+    }
+visited =[]
+queue =[]
+def bfs(visited, graph, node):
+    visited.append(node)
+    queue.append(node)
+
+    while queue:
+        m=queue.pop(0)
+        print(m,end="")
+        for n in graph[m]:
+            if n not in visited:
+                visited.append(n)
+                queue.append(n)
+
+bfs(visited,graphs1,"A")
+----------------------------------------------------------------------------
+
+A* algorithm
+from simpleai.search import SearchProblem , astar
+GOAL = "HELLO WORLD"
+class HelloProblem(SearchProblem):
+    def actions(self,state):
+        return list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ ')if len(state)<len(GOAL) else[]
+
+    def result (self,state,action):
+        return state + action
+
+    def is_goal(self,state):
+        return state == GOAL
+
+    def heuristic(self,state):
+        return sum(1 for i in range(len(state)) if state[i]!= GOAL[i]) + (len(GOAL)-len(state))
+result= astar(HelloProblem (initial_state=''))
+print(result.state)
+print(result.path())
+------------------------------------------------------------------------------------------------------
+facts = {
+'Sachin': 'batsman',
+'batsman': 'cricketer'
+}
+
+def derive_fact(starting_subject, target_predicate):
+    current_subject = starting_subject
+    while current_subject in facts:
+        current_subject = facts[current_subject]
+    if current_subject == target_predicate:
+        return f"{starting_subject} is {target_predicate}"
+    return "Cannot derive the fact"
+
+starting_subject = 'Sachin'
+target_predicate = 'cricketer'
+
+result = derive_fact(starting_subject, target_predicate)
+print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
