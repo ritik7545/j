@@ -104,10 +104,49 @@ target_predicate = 'cricketer'
 result = derive_fact(starting_subject, target_predicate)
 print(result)
 
+# a=starting_subject   b= target_predicate c=currnet_subject
+-----------------------------------------------------------------------
+def associative_law_add(a,b,c):
+    num1 = a+(b+c)
+    num2 = (a+b)+c
+    return num1 , num2
 
+def associative_law_multi(a,b,c):
+    num1 = a*(b*c)
+    num2 = (a*b)*c
+    return num1 , num2
 
+a=2
+b=3
+c=4
 
+a , b = associative_law_add(a,b,c)
+print(f"Associative Law of Addition:")
+print(f"Addition is: a+(b+c)= {a} and (a+b)+c= {b}")
+print(f"Result: {'Equal' if a == b else 'Not Equal'}")
 
+m , n = associative_law_multi(a,b,c)
+print(f"Associative Law of Multiplication:")
+print(f"Multiplication is: a+(b+c)= {m} and (a+b)+c= {n}")
+print(f"Result: {'Equal' if m == n else 'Not Equal'}")
+---------------------------------------------------------------------------
+def associative_law_multi(a,b,c):
+    num1 = a*(b+c)
+    num2 = (a*b)+(a*c)
+    return num1 , num2
+
+a=3
+b=4
+c=5
+
+a , b = associative_law_add(a,b,c)
+print(f"Associative Law of Addition:")
+print(f"Distributive Law: a*(b+c)= {a} and (a*b)+(a*c)= {b}")
+
+if a==b:
+    print("The Distributive Law holds true.")
+else:
+    print("The Distributive Law does not holds true")
 
 
 
